@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Update Mammal - {{ mammal.fullname }}</h1>
+<a href="/">Back</a><br /><br />
+
+<form action="/update/{{ mammal.uid }}" method="post">
+  <label for="genus_input">Genus</label>
+  <input
+    type="text"
+    name="genus"
+    id="genus_input"
+    value="{{ mammal.genus }}"
+  /><br />
+
+  <label for="sex_input">Sex</label>
+  <input
+    type="text"
+    name="sex"
+    id="sex_input"
+    value="{{ mammal.sex }}"
+  /><br />
+
+  <label for="plot_type_input">Plot Type</label>
+  <input
+    type="text"
+    name="plot_type"
+    id="plot_type_input"
+    value="{{ mammal.plot_type }}"
+  /><br />
+
+  <label for="hindfoot_length_input">Hindfoot Length</label>
+  <input
+    type="tel"
+    name="hindfoot_length"
+    id="hindfoot_length_input"
+    value="{{ mammal.hindfoot_length}}"
+  /><br />
+
+  <input type="submit" value="Update" />
+</form>
+{% endblock %}

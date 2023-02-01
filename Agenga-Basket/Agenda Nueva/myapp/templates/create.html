@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liga Baloncesto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row mt-5 mx-auto justify-content-center">
+      <div>
+        <p class="list-group">
+          {% extends 'base.html' %} {% block content %}
+        <h1>ADD BASKET</h1>
+        </p>
+        <div class="row">
+          <div class="col-6">
+            <form id="createForm" action="/create" method="post">
+              <label class="form-label">Nombre</label>
+              <input type="text" name="nombre" class="form-control" />
+              <br>
+              <label class="form-label">Ciudad</label>
+              <input type="text" name="ciudad" class="form-control" />
+              <br>
+              <label class="form-label">Fundacion</label>
+              <input type="number" name="fundacion" class="form-control" />
+              <br>
+              <button id="submitButton" class="btn btn-primary" >Add</button>
+              <button id="clearButton" class="btn btn-secondary">Clear</button>
+              <button id="hideButton" class="btn btn-secondary">Hide</button>
+              <button id="showButton" class="btn btn-secondary mr-66">Show</button>
+              <a href="/" class="btn btn-warning">Back</a><br /><br />
+            </form>
+            {% endblock %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% block js %}
+  <script src="{{ url_for('static', filename='validation.js') }}"></script>
+  {% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

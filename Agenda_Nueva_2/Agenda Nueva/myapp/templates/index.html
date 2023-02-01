@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Mammals List</h1>
+
+<a href="/create">Add</a>
+
+<ul>
+  {% for mammal in mammals %}
+  <li>
+    {{ mammal.genus }}
+    <a href="/update/{{ mammal.uid }}">Update</a>
+    <a href="/delete/{{ mammal.uid }}">Delete</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

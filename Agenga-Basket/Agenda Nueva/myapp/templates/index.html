@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Equipo List</h1>
+
+<a href="/create">Add</a>
+
+<ul>
+  {% for equipo in equipos %}
+  <li>
+    {{ equipo.nombre }}
+    <a href="/update/{{ equipo.equipo_id }}">Update</a>
+    <a href="/delete/{{ equipo.equipo_id }}">Delete</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
