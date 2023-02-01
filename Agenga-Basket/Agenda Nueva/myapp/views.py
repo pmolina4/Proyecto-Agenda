@@ -51,16 +51,16 @@ def init_views(app, db_access: dict[str, Callable]):
             )
             return redirect("/")
 
-    @app.route("/delete/<int:uid>", methods=["GET", "POST"])
-    def delete(uid: int):
+    @app.route("/delete/<int:equipo_id>", methods=["GET", "POST"])
+    def delete(equipo_id: int):
         if request.method == "GET":
-            read_mammal = db_access["read"]
-            mammal = read_mammal(uid)
-            return render_template("delete.html", mammal=mammal)
+            read_equipo = db_access["read"]
+            equipo = read_equipo(equipo_id)
+            return render_template("delete.html", equipo=equipo)
 
         if request.method == "POST":
-            delete_mammal = db_access["delete"]
-            delete_mammal(
-                uid=uid,
+            delete_equipo = db_access["delete"]
+            delete_equipo(
+                equipo_id=equipo_id,
             )
             return redirect("/")
