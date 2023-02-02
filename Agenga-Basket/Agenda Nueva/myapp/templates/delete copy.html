@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Página de borrado</h1>
+<br>
+<h2>Está Seguro que desea eliminar el equipo - {{ equipo.nombre }}</h2>
+<a href="/">Back</a><br /><br />
+
+<p>Estas Seguro?</p>
+<form action="/delete/{{ equipo.equipo_id }}" method="post">
+  <input  class="btn btn-danger" type="submit" value="Delete" />
+</form>
+{% endblock %}
