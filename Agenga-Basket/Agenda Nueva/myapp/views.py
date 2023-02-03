@@ -33,21 +33,20 @@ def init_views(app, db_access: dict[str, Callable]):
             )
             return redirect("/")
 
-    @app.route("/update/<int:uid>", methods=["GET", "POST"])
-    def update(uid: int):
+    @app.route("/update/<int:equipo_id>", methods=["GET", "POST"])
+    def update(equipo_id: int):
         if request.method == "GET":
-            read_mammal = db_access["read"]
-            mammal = read_mammal(uid)
-            return render_template("update.html", mammal=mammal)
+            read_equipo = db_access["read"]
+            equipo = read_equipo(equipo_id)
+            return render_template("update.html", equipo=equipo)
 
         if request.method == "POST":
-            update_mammal = db_access["update"]
-            update_mammal(
-                uid=uid,
-                genus=request.form["genus"],
-                sex=request.form["sex"],
-                plot_type=request.form["plot_type"],
-                hindfoot_length=int(request.form["hindfoot_length"]),
+            update_equipo = db_access["update"]
+            update_equipo(
+                equipo_id=equipo_id,
+                nombre=request.form["nombre"],
+                ciudad=request.form["ciudad"],
+                fundacion=request.form["fundacion"]
             )
             return redirect("/")
 

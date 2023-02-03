@@ -1,40 +1,54 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Update Mammal - {{ mammal.fullname }}</h1>
-<a href="/">Back</a><br /><br />
+<!DOCTYPE html>
+<html lang="en">
 
-<form action="/update/{{ mammal.uid }}" method="post">
-  <label for="genus_input">Genus</label>
-  <input
-    type="text"
-    name="genus"
-    id="genus_input"
-    value="{{ mammal.genus }}"
-  /><br />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-  <label for="sex_input">Sex</label>
-  <input
-    type="text"
-    name="sex"
-    id="sex_input"
-    value="{{ mammal.sex }}"
-  /><br />
+<body>
+  {% extends 'base.html' %} {% block content %}
+  <div class="container">
+    <div class="row mt-5 d-flex justify-content-center ">
+      <div class="col-4">
+        <p class="list-group">
+        <h3>Detalles De Equipo</h3>
+        <div class="card" style="width: 18rem;">
+          <img src="../static/escudo.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ equipo.nombre }}
+            </h5>
+            <form action="/update/{{ equipo.equipo_id }}" method="POST">
 
-  <label for="plot_type_input">Plot Type</label>
-  <input
-    type="text"
-    name="plot_type"
-    id="plot_type_input"
-    value="{{ mammal.plot_type }}"
-  /><br />
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <input type="text" name="nombre" class="form-control" value=" {{ equipo.nombre }}" />
+              </li>
+              <li class="list-group-item">
+                <input type="text" name="ciudad" class="form-control" value="{{ equipo.ciudad }}"/>
+              </li>
+              <li class="list-group-item">
+                <input type="number" name="fundacion" class="form-control" value="{{ equipo.fundacion }}" />
+              </li>
+            </ul>
+          </div>
+          <div class="card-body mx-auto">
+              <button type="button" class="btn btn-primary" data-bs-target="#form"
+                data-bs-toggle="collapse">Editar</button>
+                <a class="btn btn-secondary" href="/">Volver</a>
+            </form>
+            {% endblock %}
+          </div>
+        </div>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-  <label for="hindfoot_length_input">Hindfoot Length</label>
-  <input
-    type="tel"
-    name="hindfoot_length"
-    id="hindfoot_length_input"
-    value="{{ mammal.hindfoot_length}}"
-  /><br />
-
-  <input type="submit" value="Update" />
-</form>
-{% endblock %}
+</html>
