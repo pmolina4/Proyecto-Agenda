@@ -17,7 +17,7 @@
       <div>
         <p class="list-group"></p>
         {% extends 'base.html' %} {% block content %}
-        <H1>Listado De Equipos</H1>
+        <H1>Listado De Jugadores</H1>
         <div class="row">
           <div class="col-9">
             <div style=" overflow:auto;  height: 25%;">
@@ -25,20 +25,18 @@
                 <thead class="table-dark">
                   <tr class="table-active">
                     <th>Nombre</th>
-                    <th>Ciudad</th>
-                    <th>Fundacion</th>
+                    <th>Numero</th>
+                    <th>Posicion</th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for equipo in equipos %}
+                  {% for jugador in jugadores %}
                   <tr>
-                    <td> {{ equipo.nombre }} </td>
-                    <td> {{ equipo.ciudad }} </td>
-                    <td> {{ equipo.fundacion }} </td>
-                    <td> <a class="btn btn-primary" href="/update/{{ equipo.equipo_id }}">Update</a></td>
-                    <td> <a class="btn btn-primary" href="/delete/{{ equipo.equipo_id }}">Delete</a></td>
+                    <td> {{ jugador.Nombre }} </td>
+                    <td> {{ jugador.Numero }} </td>
+                    <td> {{ jugador.Posicion }} </td>
                   </tr>
                   {% endfor %}
                 </tbody>

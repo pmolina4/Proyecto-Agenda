@@ -63,3 +63,11 @@ def init_views(app, db_access: dict[str, Callable]):
                 equipo_id=equipo_id,
             )
             return redirect("/")
+   
+    ''' @app.route("/jugador", methods=["GET", "POST"])
+    def index():
+    	# invoca a la clase mammal que está implementada en models.py con el método "list"
+    	# y luego lanza la vista "index.html"
+        list_jugador = db_access["list_jugadores"] 
+        jugadores = list_jugador() # para mostrar al inicio los contactos que ya están en la BD
+        return render_template("jugador.html", jugadores=jugadores)'''
