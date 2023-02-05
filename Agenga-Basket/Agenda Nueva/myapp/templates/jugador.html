@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index Baloncesto</title>
+  <title>Index Jugador</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
   {% include "menu.html" %}
 </head>
@@ -20,15 +20,14 @@
         <H1>Listado De Jugadores</H1>
         <div class="row">
           <div class="col-9">
-            <div style=" overflow:auto;  height: 25%;">
+            <div style=" overflow:auto;  height: 50vh; border-style: solid;">
               <table class="table table-success table-striped-columns">
                 <thead class="table-dark">
                   <tr class="table-active">
                     <th>Nombre</th>
                     <th>Numero</th>
                     <th>Posicion</th>
-                    <th></th>
-                    <th></th>
+                    <th>id_equipo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,19 +36,21 @@
                     <td> {{ jugador.Nombre }} </td>
                     <td> {{ jugador.Numero }} </td>
                     <td> {{ jugador.Posicion }} </td>
+                    <td> {{ jugador.id_equipo }} </td>
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
             </div>
-            <br>
-            <a href="/create" class="btn btn-warning">ANADIR UN EQUIPO</a>
-            {% endblock %}
           </div>
+          <br>
         </div>
-
+        <a href="/create" class="btn btn-warning">ANADIR UN EQUIPO</a>
+        {% endblock %}
       </div>
+
     </div>
+  </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

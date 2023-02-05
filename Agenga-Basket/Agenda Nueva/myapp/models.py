@@ -76,7 +76,7 @@ def init_db(app) -> dict[str, Callable]:
 
     def list_jugador() -> list[Jugador]:
         Jugadores = Jugador.query.all()
-        return [Jugador for jugador in Jugadores] 
+        return [Jugador for Jugador in Jugadores] 
 
     # create_all es un método de Flask-alchemy que crea la tabla con sus campos
     db.create_all()

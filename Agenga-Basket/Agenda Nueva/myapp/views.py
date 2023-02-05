@@ -7,16 +7,17 @@ from flask import redirect, render_template, request
 # db_access es el objeto que devuelve init_db para gestionar la base de datos (en app.py: db_access = init_db(app))
 # ambos pasan como parámetros a init_views
 
-def init_views(app, db_access: dict[str, Callable]): 
+
+def init_views(app, db_access: dict[str, Callable]):
     # definición de las acciones a realizar para lanzar cada vista
     # nótese que el código de "/" no pregunta si se ha hecho una petición, así que deberá ejecutarse al inicializar
     # en el caso de los demás tienen sentencias IF para que el código se ejecute solo si haya una petición
     @app.route("/", methods=["GET", "POST"])
     def index():
-    	# invoca a la clase mammal que está implementada en models.py con el método "list"
-    	# y luego lanza la vista "index.html"
-        list_equipos = db_access["list"] 
-        equipos = list_equipos() # para mostrar al inicio los contactos que ya están en la BD
+        # invoca a la clase mammal que está implementada en models.py con el método "list"
+        # y luego lanza la vista "index.html"
+        list_equipos = db_access["list"]
+        equipos = list_equipos()  # para mostrar al inicio los contactos que ya están en la BD
         return render_template("index.html", equipos=equipos)
 
     @app.route("/create", methods=["GET", "POST"])
@@ -63,11 +64,12 @@ def init_views(app, db_access: dict[str, Callable]):
                 equipo_id=equipo_id,
             )
             return redirect("/")
-   
+
     @app.route("/jugador", methods=["GET", "POST"])
     def jugador():
-    	# invoca a la clase mammal que está implementada en models.py con el método "list"
-    	# y luego lanza la vista "index.html"
-        list_jugador = db_access["list_jugadores"] 
-        jugadores = list_jugador() # para mostrar al inicio los contactos que ya están en la BD
+        # invoca a la clase mammal que está implementada en models.py con el método "list"
+        # y luego lanza la vista "index.html"
+        list_jugador = db_access["list_jugadores"]
+        # para mostrar al inicio los contactos que ya están en la BD
+        jugadores = list_jugador()
         return render_template("jugador.html", jugadores=jugadores)
