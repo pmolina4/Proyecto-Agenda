@@ -69,7 +69,8 @@ def init_views(app, db_access: dict[str, Callable]):
     def jugador():
         # invoca a la clase mammal que está implementada en models.py con el método "list"
         # y luego lanza la vista "index.html"
-        list_jugador = db_access["list_jugadores"]
+        list_jugador = db_access["list_filtrada"]
         # para mostrar al inicio los contactos que ya están en la BD
         jugadores = list_jugador()
+    
         return render_template("jugador.html", jugadores=jugadores)

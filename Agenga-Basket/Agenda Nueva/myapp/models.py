@@ -20,9 +20,8 @@ def init_db(app) -> dict[str, Callable]:
         nombre = db.Column(db.String(30))
         ciudad = db.Column(db.String(30))
         fundacion = db.Column(db.Integer)
-
-        # __str__ es un método especial para que al hacer un print del objeto nos devuelva
-        # el nombre, ciudad y fundacion
+        jugadores = db.relationship('Jugador', back_populates='equipo', lazy='dynamic')
+     
         def __str__(self):
             return f"[{self.nombre}] {self.ciudad} {self.fundacion}"
 
@@ -40,12 +39,12 @@ def init_db(app) -> dict[str, Callable]:
         Posicion = db.Column(db.Integer)
         id_equipo = db.Column(db.Integer, db.ForeignKey(
             "Equipo.equipo_id"), nullable=False)
-        # __str__ es un método especial para que al hacer un print del objeto nos devuelva
-        # el nombre, ciudad y fundacion
+        equipo = db.relationship('Equipo', back_populates='jugadores')
+ 
         def __str__(self):
             return f"[{self.Nombre}] {self.Numero} {self.Posicion}"        
 
-   # ------------- métodos que operan sobre el contenido la tabla equipo -----------
+   # ------------- FUNCIONES DE EQUIPO -----------
     def create_equipo(nombre: str, ciudad: str, fundacion: int):
         equipo = Equipo(
             nombre=nombre, ciudad=ciudad, fundacion=fundacion
@@ -73,11 +72,34 @@ def init_db(app) -> dict[str, Callable]:
     def list_equipos() -> list[Equipo]:
         equipos = Equipo.query.all()
         return [equipo for equipo in equipos]
-
+    
+    #------------FUNCIONES JUGADORES ---------------
+    """
+    Esta Funcion lo que devuelve es los jugadores con sus campos 
+    de forma normal es decir el id id_equipo y todo segun esta metido
+    en la bd
+    """
     def list_jugador() -> list[Jugador]:
         Jugadores = Jugador.query.all()
         return [Jugador for Jugador in Jugadores] 
-
+    '''
+    Esta funcion lo uqe hace es que gaurdo la información de la bd en un array
+    y además el id_equipo  lo comparo con el equipo que es y lo guardo 
+    en el array para después poder mostrarlo en la tabla 
+    ya que el usuario no sabría por el id_equipo a que equipo corresponde
+    '''
+    def list_jugadores() -> list[Jugador]:
+        jugadores = Jugador.query.all()
+        result = []
+        for jugador in jugadores:
+            jugador_dict = jugador.__dict__
+            if jugador.equipo:
+                jugador_dict['equipo'] = jugador.equipo.nombre
+            else:
+                jugador_dict['equipo'] = None
+            result.append(jugador_dict)
+        return result
+    
     # create_all es un método de Flask-alchemy que crea la tabla con sus campos
     db.create_all()
 
@@ -89,5 +111,6 @@ def init_db(app) -> dict[str, Callable]:
         "update": update_equipo,
         "delete": delete_equipo,
         "list": list_equipos,
-        "list_jugadores": list_jugador
-    }
+        "list_jugadores": list_jugador,
+        "list_filtrada" : list_jugadores
+        }

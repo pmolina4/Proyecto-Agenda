@@ -27,7 +27,7 @@
                     <th>Nombre</th>
                     <th>Numero</th>
                     <th>Posicion</th>
-                    <th>id_equipo</th>
+                    <th>idEquipo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,7 @@
                     <td> {{ jugador.Nombre }} </td>
                     <td> {{ jugador.Numero }} </td>
                     <td> {{ jugador.Posicion }} </td>
-                    <td> {{ jugador.id_equipo }} </td>
+                    <td> {{ jugador.equipo }} </td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -45,6 +45,7 @@
           </div>
           <br>
         </div>
+        <br>
         <a href="/create" class="btn btn-warning">ANADIR UN EQUIPO</a>
         {% endblock %}
       </div>
