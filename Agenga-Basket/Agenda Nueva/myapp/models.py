@@ -35,8 +35,8 @@ def init_db(app) -> dict[str, Callable]:
         jugador_id = db.Column("Jugador_id", db.Integer, Sequence(
             'Jugador_id_seq'),  primary_key=True)
         Nombre = db.Column(db.String(30))
-        Numero = db.Column(db.String(30))
-        Posicion = db.Column(db.Integer)
+        Numero = db.Column(db.Integer)
+        Posicion = db.Column(db.String(30))
         id_equipo = db.Column(db.Integer, db.ForeignKey(
             "Equipo.equipo_id"), nullable=False)
         equipo = db.relationship('Equipo', back_populates='jugadores')
@@ -100,13 +100,29 @@ def init_db(app) -> dict[str, Callable]:
             result.append(jugador_dict)
         return result
     
+    def read_jugador(jugador_id: int) -> Jugador:
+        return Jugador.query.get(jugador_id)
+    
     def create_jugador(nombre: str, numero: int, posicion: str, id_equipo: str):
         jugador = Jugador(
             Nombre=nombre, Numero=numero, Posicion=posicion, id_equipo=id_equipo
         )
         db.session.add(jugador)
         db.session.commit()
-        
+    
+    def delete_jugador(jugador_id: int):
+        jugador = Jugador.query.get(jugador_id)
+        db.session.delete(jugador)
+        db.session.commit()
+            
+    def update_jugador(
+        jugador_id: int, Nombre: str, Numero: int, Posicion: str
+    ):
+        jugador = Jugador.query.get(jugador_id)
+        jugador.Nombre = Nombre
+        jugador.Numero = Numero
+        jugador.Posicion = Posicion
+        db.session.commit()
     # create_all es un método de Flask-alchemy que crea la tabla con sus campos
     db.create_all()
 
@@ -120,5 +136,8 @@ def init_db(app) -> dict[str, Callable]:
         "list": list_equipos,
         "list_jugadores": list_jugador,
         "list_filtrada" : list_jugadores,
-        "create_jugador" : create_jugador
+        "create_jugador" : create_jugador,
+        "delete_jugador" : delete_jugador,
+        "read_jugador" : read_jugador,
+        "update_jugador" : update_jugador
         }

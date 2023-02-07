@@ -63,7 +63,7 @@ def init_views(app, db_access: dict[str, Callable]):
         if request.method == "POST":
             delete_equipo = db_access["delete"]
             delete_equipo(
-                equipo_id=equipo_id,
+                equipo_id=equipo_id
             )
             return redirect("/")
 
@@ -96,4 +96,34 @@ def init_views(app, db_access: dict[str, Callable]):
                 id_equipo=request.form["id_equipo"]
             )
             return redirect("/jugador")
-        
+     
+    @app.route("/delete_jugador/<int:jugador_id>", methods=["GET", "POST"])
+    def delete_jugador(jugador_id: int):
+        if request.method == "GET":
+            read_jugador = db_access["read_jugador"]
+            jugador = read_jugador(jugador_id)
+            return render_template("delete_jugador.html", jugador=jugador)
+
+        if request.method == "POST":
+            delete_jugador = db_access["delete_jugador"]
+            delete_jugador(
+                jugador_id=jugador_id
+            )
+            return redirect("/jugador")   
+    
+    @app.route("/update_jugador/<int:jugador_id>", methods=["GET", "POST"])
+    def update_jugador(jugador_id: int):
+        if request.method == "GET":
+            read_jugador = db_access["read_jugador"]
+            jugador = read_jugador(jugador_id)
+            return render_template("update_jugador.html", jugador=jugador)
+
+        if request.method == "POST":
+            update_jugador = db_access["update_jugador"]
+            update_jugador(
+                jugador_id=jugador_id,
+                Nombre=request.form["nombre"],
+                Numero=request.form["numero"],
+                Posicion=request.form["posicion"]
+            )
+            return redirect("/jugador")
