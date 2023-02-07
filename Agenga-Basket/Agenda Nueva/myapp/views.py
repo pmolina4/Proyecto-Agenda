@@ -12,6 +12,8 @@ def init_views(app, db_access: dict[str, Callable]):
     # definición de las acciones a realizar para lanzar cada vista
     # nótese que el código de "/" no pregunta si se ha hecho una petición, así que deberá ejecutarse al inicializar
     # en el caso de los demás tienen sentencias IF para que el código se ejecute solo si haya una petición
+    
+    #-------------VIEW DE EQUIPO ---------------------
     @app.route("/", methods=["GET", "POST"])
     def index():
         # invoca a la clase mammal que está implementada en models.py con el método "list"
@@ -65,6 +67,8 @@ def init_views(app, db_access: dict[str, Callable]):
             )
             return redirect("/")
 
+    #-------------VIEW DE JUGADOR ---------------------
+
     @app.route("/jugador", methods=["GET", "POST"])
     def jugador():
         # invoca a la clase mammal que está implementada en models.py con el método "list"
@@ -74,3 +78,18 @@ def init_views(app, db_access: dict[str, Callable]):
         jugadores = list_jugador()
     
         return render_template("jugador.html", jugadores=jugadores)
+
+    @app.route("/create_jugador", methods=["GET", "POST"])
+    def create_jugador():
+        if request.method == "GET":
+            return render_template("create_jugador.html")
+        '''
+        if request.method == "POST":
+            create_equipo = db_access["create"]
+            create_equipo(
+                nombre=request.form["nombre"],
+                ciudad=request.form["ciudad"],
+                fundacion=request.form["fundacion"]
+            )
+            return redirect("/")
+        '''

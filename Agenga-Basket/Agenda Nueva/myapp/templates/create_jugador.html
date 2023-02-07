@@ -16,19 +16,27 @@
       <div>
         <p class="list-group">
           {% extends 'base.html' %} {% block content %}
-        <h1>ADD EQUIPO</h1>
+        <h1>ADD JUGADOR</h1>
         </p>
         <div class="row">
           <div class="col-6">
-            <form id="createForm" action="/create" method="post">
+            <form id="createForm" action="/create_jugador" method="post">
               <label class="form-label">Nombre</label>
               <input type="text" name="nombre" class="form-control" />
               <br>
-              <label class="form-label">Ciudad</label>
-              <input type="text" name="ciudad" class="form-control" />
+              <label class="form-label">Numero</label>
+              <input type="text" name="numero" class="form-control" />
               <br>
-              <label class="form-label">Fundacion</label>
-              <input type="number" name="fundacion" class="form-control" />
+              <label class="form-label">Posicion</label>
+              <input type="number" name="posicion" class="form-control" />
+              <br>
+              <label class="form-label">Equipo</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Selecciona un equipo</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
               <br>
               <button id="submitButton" class="btn btn-primary" >Add</button>
               <button id="clearButton" class="btn btn-secondary">Clear</button>
