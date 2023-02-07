@@ -27,7 +27,9 @@
                     <th>Nombre</th>
                     <th>Numero</th>
                     <th>Posicion</th>
-                    <th>idEquipo</th>
+                    <th>Equipo</th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,6 +39,8 @@
                     <td> {{ jugador.Numero }} </td>
                     <td> {{ jugador.Posicion }} </td>
                     <td> {{ jugador.equipo }} </td>
+                    <td> <a class="btn btn-primary" href="">Update</a></td>
+                    <td> <a class="btn btn-primary" href="">Delete</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -49,7 +53,6 @@
         <a href="/create_jugador" class="btn btn-warning">ANADIR UN JUGADOR</a>
         {% endblock %}
       </div>
-
     </div>
   </div>
   </div>

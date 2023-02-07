@@ -100,6 +100,13 @@ def init_db(app) -> dict[str, Callable]:
             result.append(jugador_dict)
         return result
     
+    def create_jugador(nombre: str, numero: int, posicion: str, id_equipo: str):
+        jugador = Jugador(
+            Nombre=nombre, Numero=numero, Posicion=posicion, id_equipo=id_equipo
+        )
+        db.session.add(jugador)
+        db.session.commit()
+        
     # create_all es un método de Flask-alchemy que crea la tabla con sus campos
     db.create_all()
 
@@ -112,5 +119,6 @@ def init_db(app) -> dict[str, Callable]:
         "delete": delete_equipo,
         "list": list_equipos,
         "list_jugadores": list_jugador,
-        "list_filtrada" : list_jugadores
+        "list_filtrada" : list_jugadores,
+        "create_jugador" : create_jugador
         }

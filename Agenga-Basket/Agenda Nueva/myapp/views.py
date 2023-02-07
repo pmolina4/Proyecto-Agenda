@@ -82,14 +82,18 @@ def init_views(app, db_access: dict[str, Callable]):
     @app.route("/create_jugador", methods=["GET", "POST"])
     def create_jugador():
         if request.method == "GET":
-            return render_template("create_jugador.html")
-        '''
+            list_equipos = db_access["list"]
+            equipos = list_equipos()
+
+            return render_template("create_jugador.html", equipos=equipos)
+        
         if request.method == "POST":
-            create_equipo = db_access["create"]
-            create_equipo(
+            create_jugador = db_access["create_jugador"]
+            create_jugador(
                 nombre=request.form["nombre"],
-                ciudad=request.form["ciudad"],
-                fundacion=request.form["fundacion"]
+                numero=request.form["numero"],
+                posicion=request.form["posicion"],
+                id_equipo=request.form["id_equipo"]
             )
-            return redirect("/")
-        '''
+            return redirect("/jugador")
+        

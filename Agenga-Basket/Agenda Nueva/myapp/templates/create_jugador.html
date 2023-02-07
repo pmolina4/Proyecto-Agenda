@@ -25,17 +25,18 @@
               <input type="text" name="nombre" class="form-control" />
               <br>
               <label class="form-label">Numero</label>
-              <input type="text" name="numero" class="form-control" />
+              <input type="number" name="numero" class="form-control" />
               <br>
               <label class="form-label">Posicion</label>
-              <input type="number" name="posicion" class="form-control" />
+              <input type="text" name="posicion" class="form-control" />
               <br>
               <label class="form-label">Equipo</label>
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" aria-label="Default select example" name="id_equipo">
                 <option selected>Selecciona un equipo</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {% for equipo in equipos %}
+                <!-- Recojo los equipos que paso por la vitsa y el valor es el id y muestro el nombre para poder hacer la inseccion  -->
+                <option value="{{ equipo.equipo_id }}">{{ equipo.nombre }}</option> 
+                {% endfor %}
               </select>
               <br>
               <button id="submitButton" class="btn btn-primary" >Add</button>
