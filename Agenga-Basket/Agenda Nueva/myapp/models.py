@@ -55,7 +55,8 @@ def init_db(app) -> dict[str, Callable]:
         
         def __str__(self):
             return f"[{self.Lesion}] {self.TiempoRecuperacion}"        
-
+    
+    
    # ------------- FUNCIONES DE EQUIPO -----------
     def create_equipo(nombre: str, ciudad: str, fundacion: int):
         equipo = Equipo(
