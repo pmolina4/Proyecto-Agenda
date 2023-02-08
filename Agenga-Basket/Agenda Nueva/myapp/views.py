@@ -127,3 +127,31 @@ def init_views(app, db_access: dict[str, Callable]):
                 Posicion=request.form["posicion"]
             )
             return redirect("/jugador")
+    
+    #-------------VIEW DE Lesion ---------------------
+
+    @app.route("/lesion", methods=["GET", "POST"])
+    def lesion():
+        # invoca a la clase mammal que está implementada en models.py con el método "list"
+        # y luego lanza la vista "index.html"
+        list_lesion = db_access["list_lesion"]
+        # para mostrar al inicio los contactos que ya están en la BD
+        lesiones = list_lesion()
+    
+        return render_template("lesion.html", lesiones=lesiones)
+    
+    @app.route("/create_lesion", methods=["GET", "POST"])
+    def create_lesion():
+        if request.method == "GET":
+            list_lesion = db_access["list_lesion"]
+            lesiones = list_lesion()
+
+            return render_template("create_lesion.html", lesiones=lesiones)
+        
+        if request.method == "POST":
+            create_lesion = db_access["create_lesion"]
+            create_lesion(
+                Lesion=request.form["lesion"],
+                TiempoRecuperacion=request.form["tiempoRecuperacion"]
+            )
+            return redirect("/lesion")

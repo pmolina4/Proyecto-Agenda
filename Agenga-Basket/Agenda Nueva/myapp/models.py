@@ -43,6 +43,18 @@ def init_db(app) -> dict[str, Callable]:
  
         def __str__(self):
             return f"[{self.Nombre}] {self.Numero} {self.Posicion}"        
+    
+    class Lesion(db.Model):
+
+        __tablename__ = "Lesion"  # Nombre de la tabla que se crea
+
+        id = db.Column("id", db.Integer, Sequence(
+            'id_seq'),  primary_key=True)
+        Lesion = db.Column(db.String(30))
+        TiempoRecuperacion = db.Column(db.Integer)
+        
+        def __str__(self):
+            return f"[{self.Lesion}] {self.TiempoRecuperacion}"        
 
    # ------------- FUNCIONES DE EQUIPO -----------
     def create_equipo(nombre: str, ciudad: str, fundacion: int):
@@ -123,6 +135,39 @@ def init_db(app) -> dict[str, Callable]:
         jugador.Numero = Numero
         jugador.Posicion = Posicion
         db.session.commit()
+        
+        
+        
+    #------------FUNCIONES JUGADORES ---------------
+    
+    def list_lesion() -> list[Lesion]:
+        Lesiones = Lesion.query.all()
+        return [Lesion for Lesion in Lesiones] 
+    
+    def read_lesion(id: int) -> Lesion:
+        return Lesion.query.get(id)
+    
+    def create_lesion(Lesion: str, TiempoRecuperacion: int):
+        lesion = Lesion(
+            Lesion=Lesion, TiempoRecuperacion=TiempoRecuperacion
+        )
+        db.session.add(lesion)
+        db.session.commit()
+    
+    def delete_lesion(id: int):
+        lesion = Lesion.query.get(id)
+        db.session.delete(lesion)
+        db.session.commit()
+            
+    def update_lesion(
+        id: int, Lesion: str, TiempoRecuperacion: int
+    ):
+        lesion = Lesion.query.get(id)
+        lesion.Lesion = Lesion
+        lesion.TiempoRecuperacion = TiempoRecuperacion
+        db.session.commit()
+        
+    
     # create_all es un método de Flask-alchemy que crea la tabla con sus campos
     db.create_all()
 
@@ -139,5 +184,10 @@ def init_db(app) -> dict[str, Callable]:
         "create_jugador" : create_jugador,
         "delete_jugador" : delete_jugador,
         "read_jugador" : read_jugador,
-        "update_jugador" : update_jugador
+        "update_jugador" : update_jugador,
+        "list_lesion" : list_lesion,
+        "read_lesion" : read_lesion,
+        "create_lesion" : create_lesion,
+        "delete_lesion" : delete_lesion,
+        "update_lesion" : update_lesion
         }
