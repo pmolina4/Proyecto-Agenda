@@ -44,7 +44,7 @@ def init_db(app) -> dict[str, Callable]:
         def __str__(self):
             return f"[{self.Nombre}] {self.Numero} {self.Posicion}"        
     
-    class Lesion(db.Model):
+    class Lesio(db.Model):
 
         __tablename__ = "Lesion"  # Nombre de la tabla que se crea
 
@@ -140,29 +140,29 @@ def init_db(app) -> dict[str, Callable]:
         
     #------------FUNCIONES JUGADORES ---------------
     
-    def list_lesion() -> list[Lesion]:
-        Lesiones = Lesion.query.all()
+    def list_lesion() -> list[Lesio]:
+        Lesiones = Lesio.query.all()
         return [Lesion for Lesion in Lesiones] 
     
-    def read_lesion(id: int) -> Lesion:
-        return Lesion.query.get(id)
+    def read_lesion(id: int) -> Lesio:
+        return Lesio.query.get(id)
     
-    def create_lesion(Lesion: str, TiempoRecuperacion: int):
-        lesion = Lesion(
-            Lesion=Lesion, TiempoRecuperacion=TiempoRecuperacion
+    def create_lesion(nombre: str, tiempo: int):
+        lesion = Lesio(
+            Lesion=nombre, TiempoRecuperacion=tiempo
         )
         db.session.add(lesion)
         db.session.commit()
     
     def delete_lesion(id: int):
-        lesion = Lesion.query.get(id)
+        lesion = Lesio.query.get(id)
         db.session.delete(lesion)
         db.session.commit()
             
     def update_lesion(
         id: int, Lesion: str, TiempoRecuperacion: int
     ):
-        lesion = Lesion.query.get(id)
+        lesion = Lesio.query.get(id)
         lesion.Lesion = Lesion
         lesion.TiempoRecuperacion = TiempoRecuperacion
         db.session.commit()

@@ -151,7 +151,37 @@ def init_views(app, db_access: dict[str, Callable]):
         if request.method == "POST":
             create_lesion = db_access["create_lesion"]
             create_lesion(
+                nombre=request.form["lesion"],
+                tiempo=request.form["tiempoRecuperacion"]
+            )
+            return redirect("/lesion")
+        
+    @app.route("/delete_lesion/<int:id>", methods=["GET", "POST"])
+    def delete_lesion(id: int):
+        if request.method == "GET":
+            read_lesion = db_access["read_lesion"]
+            lesion = read_lesion(id)
+            return render_template("delete_lesion.html", lesion=lesion)
+
+        if request.method == "POST":
+            delete_lesion = db_access["delete_lesion"]
+            delete_lesion(
+                id=id
+            )
+            return redirect("/lesion")   
+    
+    @app.route("/update_lesion/<int:id>", methods=["GET", "POST"])
+    def update_lesion(id: int):
+        if request.method == "GET":
+            read_lesion = db_access["read_lesion"]
+            lesion = read_lesion(id)
+            return render_template("update_lesion.html", lesion=lesion)
+
+        if request.method == "POST":
+            update_lesion = db_access["update_lesion"]
+            update_lesion(
+                id= id,
                 Lesion=request.form["lesion"],
-                TiempoRecuperacion=request.form["tiempoRecuperacion"]
+                TiempoRecuperacion=request.form["tiempo"]
             )
             return redirect("/lesion")

@@ -35,8 +35,8 @@
                   <tr>
                     <td> {{ lesion.Lesion }} </td>
                     <td> {{ lesion.TiempoRecuperacion }} </td>
-                    <td> <a class="btn btn-primary" href="">Update</a></td>
-                    <td> <a class="btn btn-primary" href="">Delete</a></td>
+                    <td> <a class="btn btn-primary" href="/update_lesion/{{lesion.id}}">Update</a></td>
+                    <td> <a class="btn btn-primary" href="/delete_lesion/{{lesion.id}}">Delete</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
