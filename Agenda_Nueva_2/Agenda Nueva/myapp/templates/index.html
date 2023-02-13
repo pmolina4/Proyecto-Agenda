@@ -4,11 +4,14 @@
 <a href="/create">Add</a>
 
 <ul>
-  {% for mammal in mammals %}
+  {% for alojamiento in alojamientos %}
   <li>
-    {{ mammal.genus }}
-    <a href="/update/{{ mammal.uid }}">Update</a>
-    <a href="/delete/{{ mammal.uid }}">Delete</a>
+    {{ alojamiento.id_alojamiento }}
+    {{ alojamiento.nombre }}
+    {{ alojamiento.n_habitaciones }}
+    {{ alojamiento.banos }}
+    {{ alojamiento.pax }}
+
   </li>
   {% endfor %}
 </ul>

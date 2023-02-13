@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Lesion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% include "menu.html" %}
+</head>
+
+<body style="background-color: grey;">
+  {% extends 'base.html' %} {% block content %}
+  <div class="container">
+    <div class="row mt-5 d-flex justify-content-center ">
+      <div class="col-4">
+        <p class="list-group">
+        <h3>Detalles Lesion</h3>
+        <div class="card" style="width: 18rem;">
+          <form action="/update_lesion/{{ lesion.id}}" method="POST">
+
+            <img src="../static/escudo.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ lesion.Lesion }}
+              </h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <input type="text" name="lesion" class="form-control" value=" {{ lesion.Lesion }}" />
+                </li>
+                <li class="list-group-item">
+                  <input type="number" name="tiempo" class="form-control" value="{{ lesion.TiempoRecuperacion }}" />
+                </li>
+              </ul>
+            </div>
+            <div class="card-body mx-auto">
+                <input type="submit" value="Editar" class="btn btn-secondary" />
+              <a class="btn btn-secondary" href="/lesion">Volver</a>
+          </form>
+          {% endblock %}
+        </div>
+      </div>
+      </p>
+    </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

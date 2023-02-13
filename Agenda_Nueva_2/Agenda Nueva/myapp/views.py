@@ -15,9 +15,9 @@ def init_views(app, db_access: dict[str, Callable]):
     def index():
     	# invoca a la clase mammal que está implementada en models.py con el método "list"
     	# y luego lanza la vista "index.html"
-        list_mammals = db_access["list"] 
-        mammals = list_mammals() # para mostrar al inicio los contactos que ya están en la BD
-        return render_template("index.html", mammals=mammals)
+        list_alojamiento = db_access["list"] 
+        alojamientos = list_alojamiento() # para mostrar al inicio los contactos que ya están en la BD
+        return render_template("index.html", alojamientos=alojamientos)
 
     @app.route("/create", methods=["GET", "POST"])
     def create():

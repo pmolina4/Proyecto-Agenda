@@ -5,7 +5,7 @@ def create_app():
     app = Flask(__name__) # para crear una aplicación tipo Flask
     
     # declarar qué archivo SQLite se conectará a la aplicación creada con Flask
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///aleBD.sqlite3"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///liga_basket.sqlite3"
 
     
     with app.app_context(): 
